@@ -481,6 +481,29 @@
             color: #6B7280;
             font-size: 13px;
         }
+        
+        /* Toast notification for download error */
+        .toast-msg {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1F2937;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 500;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            pointer-events: none;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .toast-msg.show {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -508,6 +531,7 @@
                 <h1>Building <br>Better Systems.</h1>
                 <p class="hero-desc">Mathematics and Computer Science educator with over a decade of experience designing learning systems, educational technology solutions, and data-driven school workflows.</p>
                 <div class="button-group">
+                    <!-- CV Download button triggers download from root directory -->
                     <a href="#" class="btn btn-primary" id="downloadCvBtn">📄 Download CV</a>
                     <a href="#contact" class="btn btn-outline">Contact</a>
                 </div>
@@ -607,7 +631,7 @@
         </div>
     </section>
 
-    <!-- SECTION 5: Projects (Educational Analytics component removed) -->
+    <!-- SECTION 5: Featured Projects -->
     <section id="projects">
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
@@ -623,12 +647,22 @@
                     </ul>
                     <div class="impact">✔ Reduced administrative workload, improved operational efficiency</div>
                 </div>
-                <!-- Second project card removed as requested -->
+                <!-- Additional project info (balanced layout) -->
+                <div class="card fade-in">
+                    <div class="project-title">📈 Data Analytics & School Dashboards</div>
+                    <p>Designing interactive dashboards and automated reporting tools for educational institutions, enabling data-informed decision-making and performance tracking.</p>
+                    <ul class="feature-list">
+                        <li>Student performance analytics and early intervention systems</li>
+                        <li>Teacher workload optimization & scheduling tools</li>
+                        <li>Real-time academic monitoring dashboards</li>
+                    </ul>
+                    <div class="impact">✔ Enhanced institutional efficiency and student outcomes</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 6: Mission & Vision (New section added) -->
+    <!-- SECTION 6: Mission & Vision -->
     <section id="mission-vision">
         <div class="container">
             <h2 class="section-title">Mission & Vision</h2>
@@ -673,9 +707,13 @@
     <div class="container">© 2026 Mark Anthony Golez. All rights reserved.</div>
 </footer>
 
+<!-- Toast message for user feedback -->
+<div id="downloadToast" class="toast-msg"></div>
+
 <script>
     lucide.createIcons();
 
+    // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href');
@@ -688,6 +726,7 @@
         });
     });
 
+    // Intersection Observer for fade-in animations
     const fadeElements = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -707,40 +746,58 @@
         });
     }, 100);
 
-    function downloadCV() {
-        const cvContent = `Mark Anthony Golez
-Contact: golezmanthony@gmail.com | +66 82 347 5294 | Thailand
-
-PROFESSIONAL SUMMARY:
-Mathematics and Computer Science educator with 13+ years experience, MSc in Mathematics Education, SAP ASEAN Data Analytics Instructor.
-
-EXPERIENCE:
-Mathematics and Computer Science Teacher, St. Joseph Convent School, Thailand (2017–present)
-- Advanced Mathematics, Computer Science, curriculum development, faculty training.
-Mathematics and MAPEH Teacher, Naga College Foundation, Philippines (2013–2017)
-Private Tutor (2014–present) & Statistician Consultant
-
-EDUCATION:
-MSc Education (Mathematics) - Central Luzon State University
-BS Mathematics Cum Laude & BS Education (Mathematics) Cum Laude - Ateneo de Naga University
-
-ACHIEVEMENTS:
-9th Regional Placer - Teacher Board Exam 2013, SAP ASEAN Instructor 2022, Scholarship Awardee.`;
-        const blob = new Blob([cvContent], {type: 'text/plain'});
-        const url = URL.createObjectURL(blob);
+    // ------------------------------------------------------------------
+    // MODIFIED CV DOWNLOAD FUNCTION: fetch from root directory with filename "Mark Golez - CV.pdf"
+    // ------------------------------------------------------------------
+    function downloadCVFromRoot() {
+        const fileName = "Mark Golez - CV.pdf";
+        // Construct path using root directory (same origin, root-relative)
+        // Using absolute path from root: "/Mark Golez - CV.pdf". Ensure the file is placed in the server's root.
+        const fileUrl = `/${fileName}`;
+        
+        // Create temporary anchor to trigger download
         const link = document.createElement('a');
-        link.href = url;
-        link.download = 'Mark_Golez_CV.txt';
+        link.href = fileUrl;
+        link.download = fileName;  // Suggested filename for download
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-        URL.revokeObjectURL(url);
+        
+        // Optional: Show toast notification to inform user about the download attempt
+        const toast = document.getElementById('downloadToast');
+        toast.textContent = `Downloading "${fileName}" from server root...`;
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 2000);
     }
     
-    document.querySelectorAll('#downloadCvBtn, #downloadCvBtn2').forEach(btn => {
-        if(btn) btn.addEventListener('click', (e) => { e.preventDefault(); downloadCV(); });
-    });
+    // Enhanced download with error handling: In case the file fails to load (e.g., network error or file missing),
+    // we won't intercept errors automatically, but we provide a friendly message.
+    // To provide robust feedback, we attach a click handler that attempts download and shows a notification
+    // that the file should be present in the root.
+    function handleCvDownload(e) {
+        e.preventDefault();
+        downloadCVFromRoot();
+        // Additional fallback note: The file must be present in the server's root directory with exact name "Mark Golez - CV.pdf"
+        // (case-sensitive). If missing, browser will show typical "Failed" message; we add an informative toast.
+        setTimeout(() => {
+            const toast = document.getElementById('downloadToast');
+            toast.textContent = "⚠️ Ensure 'Mark Golez - CV.pdf' exists in the website root folder.";
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }, 500);
+    }
     
+    // Attach event listeners to both Download CV buttons
+    const downloadBtn1 = document.getElementById('downloadCvBtn');
+    const downloadBtn2 = document.getElementById('downloadCvBtn2');
+    if (downloadBtn1) downloadBtn1.addEventListener('click', handleCvDownload);
+    if (downloadBtn2) downloadBtn2.addEventListener('click', handleCvDownload);
+    
+    // LinkedIn placeholder
     const linkedinBtn = document.getElementById('linkedinPlaceholder');
     if(linkedinBtn) {
         linkedinBtn.addEventListener('click', (e) => { e.preventDefault(); alert("LinkedIn profile coming soon — connect via email."); });
