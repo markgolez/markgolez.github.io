@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -412,30 +413,16 @@
             gap: 8px;
         }
 
-        /* ===== ENHANCED FADE-IN ANIMATION ===== */
         .fade-in {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            transform: translateY(8px);
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
         }
 
         .fade-in.appear {
             opacity: 1;
             transform: translateY(0);
         }
-        
-        /* Stagger children inside grid for cascading fade effect */
-        .grid-2 .fade-in:nth-child(1) { transition-delay: 0.05s; }
-        .grid-2 .fade-in:nth-child(2) { transition-delay: 0.1s; }
-        .grid-2 .fade-in:nth-child(3) { transition-delay: 0.15s; }
-        .grid-2 .fade-in:nth-child(4) { transition-delay: 0.2s; }
-        
-        .skills-grid .fade-in:nth-child(1) { transition-delay: 0.05s; }
-        .skills-grid .fade-in:nth-child(2) { transition-delay: 0.1s; }
-        .skills-grid .fade-in:nth-child(3) { transition-delay: 0.15s; }
-        
-        .mission-vision-grid .fade-in:nth-child(1) { transition-delay: 0.05s; }
-        .mission-vision-grid .fade-in:nth-child(2) { transition-delay: 0.1s; }
 
         @media (max-width: 768px) {
             .container {
@@ -522,7 +509,7 @@
 </head>
 <body>
 
-<nav class="navbar fade-in">
+<nav class="navbar">
     <div class="nav-container">
         <div class="logo">Mark Golez</div>
         <ul class="nav-links">
@@ -540,12 +527,12 @@
 <main>
     <div class="container hero">
         <div class="hero-inner">
-            <div class="hero-content fade-in">
+            <div class="hero-content">
                 <div class="hero-tagline">Educator. Technologist. Problem Solver.</div>
                 <h1>Building <br>Better Systems.</h1>
-                <!-- MODIFIED HERO PARAGRAPH: elevated quality of education with technology -->
-                <p class="hero-desc">Driving an elevated standard of academic excellence by seamlessly integrating advanced technology, data intelligence, and human-centered design — transforming traditional classrooms into high-impact, future-ready learning ecosystems.</p>
+                <p class="hero-desc">Mathematics and Computer Science educator with over a decade of experience designing learning systems, educational technology solutions, and data-driven school workflows.</p>
                 <div class="button-group">
+                    <!-- CV Download button triggers download from root directory -->
                     <a href="#" class="btn btn-primary" id="downloadCvBtn">📄 Download CV</a>
                     <a href="#contact" class="btn btn-outline">Contact</a>
                 </div>
@@ -568,7 +555,7 @@
     <!-- SECTION 1: About -->
     <section id="about">
         <div class="container">
-            <h2 class="section-title fade-in">About</h2>
+            <h2 class="section-title">About</h2>
             <div class="card fade-in">
                 <div style="margin-bottom: 12px;"><strong style="color:#111827;">Mark Anthony Golez</strong> · Thailand</div>
                 <p>Mathematics and Computer Science educator with extensive experience in advanced mathematics instruction, educational leadership, curriculum development, faculty training, analytics, and educational technology innovation. Passionate about improving education through technology, process automation, and data-driven decision making.</p>
@@ -583,7 +570,7 @@
     <!-- SECTION 2: Experience -->
     <section id="experience">
         <div class="container">
-            <h2 class="section-title fade-in">Experience</h2>
+            <h2 class="section-title">Experience</h2>
             <div class="grid-2">
                 <div class="card timeline-card fade-in">
                     <div class="exp-header"><span class="exp-title">Mathematics and Computer Science Teacher</span><span class="exp-date">2017 – Present</span></div>
@@ -623,7 +610,7 @@
     <!-- SECTION 3: Education -->
     <section id="education">
         <div class="container">
-            <h2 class="section-title fade-in">Education</h2>
+            <h2 class="section-title">Education</h2>
             <div class="grid-2">
                 <div class="card fade-in"><div style="font-weight:600;">Master of Science in Education (Mathematics)</div><div>Central Luzon State University</div><div class="exp-date">2020 – 2022</div></div>
                 <div class="card fade-in"><div style="font-weight:600;">BS Mathematics (Cum Laude)</div><div>Ateneo de Naga University</div><div class="exp-date">2009 – 2013</div></div>
@@ -636,7 +623,7 @@
     <!-- SECTION 4: Skills -->
     <section id="skills">
         <div class="container">
-            <h2 class="section-title fade-in">Skills & Expertise</h2>
+            <h2 class="section-title">Skills & Expertise</h2>
             <div class="skills-grid">
                 <div class="skill-category fade-in"><h3>Education & Leadership</h3><div class="skill-tags"><span class="skill-tag">Mathematics Education</span><span class="skill-tag">Curriculum Development</span><span class="skill-tag">Educational Research</span><span class="skill-tag">Faculty Development</span><span class="skill-tag">Student Mentorship</span><span class="skill-tag">Academic Coaching</span></div></div>
                 <div class="skill-category fade-in"><h3>Technology & Systems</h3><div class="skill-tags"><span class="skill-tag">Educational Technology</span><span class="skill-tag">Web Application Design</span><span class="skill-tag">Dashboard Development</span><span class="skill-tag">Process Automation</span><span class="skill-tag">Information Systems</span><span class="skill-tag">Workflow Optimization</span></div></div>
@@ -648,7 +635,7 @@
     <!-- SECTION 5: Featured Projects -->
     <section id="projects">
         <div class="container">
-            <h2 class="section-title fade-in">Featured Projects</h2>
+            <h2 class="section-title">Featured Projects</h2>
             <div class="grid-2">
                 <div class="card fade-in">
                     <div class="project-title">📊 Student Behavior Management Platform</div>
@@ -661,6 +648,7 @@
                     </ul>
                     <div class="impact">✔ Reduced administrative workload, improved operational efficiency</div>
                 </div>
+                <!-- Additional project info (balanced layout) -->
                 <div class="card fade-in">
                     <div class="project-title">📈 Data Analytics & School Dashboards</div>
                     <p>Designing interactive dashboards and automated reporting tools for educational institutions, enabling data-informed decision-making and performance tracking.</p>
@@ -675,15 +663,15 @@
         </div>
     </section>
 
-    <!-- SECTION 6: Mission & Vision - UPDATED MISSION with elevated focus on technology & quality -->
+    <!-- SECTION 6: Mission & Vision -->
     <section id="mission-vision">
         <div class="container">
-            <h2 class="section-title fade-in">Mission & Vision</h2>
+            <h2 class="section-title">Mission & Vision</h2>
             <div class="mission-vision-grid">
                 <div class="mv-card fade-in">
                     <div class="mv-icon">🎯</div>
                     <div class="mv-title">Mission</div>
-                    <div class="mv-text">To cultivate an elevated level of educational quality by harnessing cutting-edge technology, intelligent data ecosystems, and human-centered innovation — designing learning systems that are adaptive, inclusive, and future-proof, empowering every learner to reach their highest potential.</div>
+                    <div class="mv-text">To empower learners and educators through innovative educational technology, data-driven insights, and human-centered design — building systems that make learning accessible, engaging, and effective for all.</div>
                 </div>
                 <div class="mv-card fade-in">
                     <div class="mv-icon">🌟</div>
@@ -697,9 +685,9 @@
     <!-- SECTION 7: Contact -->
     <section id="contact">
         <div class="container">
-            <h2 class="section-title fade-in">Let's Build Better Learning Systems</h2>
+            <h2 class="section-title">Let's Build Better Learning Systems</h2>
             <div class="contact-flex">
-                <div class="contact-info fade-in">
+                <div class="contact-info">
                     <p style="margin-bottom: 24px;">Interested in educational technology, mathematics education, analytics, research, or school process automation? Let's connect.</p>
                     <div class="contact-detail"><i data-lucide="mail" size="16"></i> <a href="mailto:golezmanthony@gmail.com">golezmanthony@gmail.com</a></div>
                     <div class="contact-detail"><i data-lucide="phone" size="16"></i> +66 82 347 5294</div>
@@ -710,13 +698,13 @@
                         <a href="#" class="btn btn-outline" id="linkedinPlaceholder">LinkedIn</a>
                     </div>
                 </div>
-                <div class="card fade-in" style="flex:1;"><p style="font-weight:500;">✉️ Quick response</p><p style="font-size:13px; color:#6B7280;">Reach out for collaborations, speaking, or consulting.</p></div>
+                <div class="card" style="flex:1;"><p style="font-weight:500;">✉️ Quick response</p><p style="font-size:13px; color:#6B7280;">Reach out for collaborations, speaking, or consulting.</p></div>
             </div>
         </div>
     </section>
 </main>
 
-<footer class="fade-in">
+<footer>
     <div class="container">© 2026 Mark Anthony Golez. All rights reserved.</div>
 </footer>
 
@@ -739,7 +727,7 @@
         });
     });
 
-    // Intersection Observer for enhanced fade-in animations (all .fade-in elements)
+    // Intersection Observer for fade-in animations
     const fadeElements = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -748,32 +736,35 @@
                 observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1, rootMargin: "0px 0px -10px 0px" });
+    }, { threshold: 0.05 });
     
     fadeElements.forEach(el => observer.observe(el));
     
-    // Trigger initial check for elements already visible
     setTimeout(() => {
         fadeElements.forEach(el => {
             const rect = el.getBoundingClientRect();
-            if(rect.top < window.innerHeight - 50) el.classList.add('appear');
+            if(rect.top < window.innerHeight - 100) el.classList.add('appear');
         });
     }, 100);
 
     // ------------------------------------------------------------------
-    // CV DOWNLOAD FUNCTION: fetch from root directory with filename "Mark Golez - CV.pdf"
+    // MODIFIED CV DOWNLOAD FUNCTION: fetch from root directory with filename "Mark Golez - CV.pdf"
     // ------------------------------------------------------------------
     function downloadCVFromRoot() {
         const fileName = "Mark Golez - CV.pdf";
+        // Construct path using root directory (same origin, root-relative)
+        // Using absolute path from root: "/Mark Golez - CV.pdf". Ensure the file is placed in the server's root.
         const fileUrl = `/${fileName}`;
         
+        // Create temporary anchor to trigger download
         const link = document.createElement('a');
         link.href = fileUrl;
-        link.download = fileName;
+        link.download = fileName;  // Suggested filename for download
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
         
+        // Optional: Show toast notification to inform user about the download attempt
         const toast = document.getElementById('downloadToast');
         toast.textContent = `Downloading "${fileName}" from server root...`;
         toast.classList.add('show');
@@ -782,9 +773,15 @@
         }, 2000);
     }
     
+    // Enhanced download with error handling: In case the file fails to load (e.g., network error or file missing),
+    // we won't intercept errors automatically, but we provide a friendly message.
+    // To provide robust feedback, we attach a click handler that attempts download and shows a notification
+    // that the file should be present in the root.
     function handleCvDownload(e) {
         e.preventDefault();
         downloadCVFromRoot();
+        // Additional fallback note: The file must be present in the server's root directory with exact name "Mark Golez - CV.pdf"
+        // (case-sensitive). If missing, browser will show typical "Failed" message; we add an informative toast.
         setTimeout(() => {
             const toast = document.getElementById('downloadToast');
             toast.textContent = "⚠️ Ensure 'Mark Golez - CV.pdf' exists in the website root folder.";
@@ -795,11 +792,13 @@
         }, 500);
     }
     
+    // Attach event listeners to both Download CV buttons
     const downloadBtn1 = document.getElementById('downloadCvBtn');
     const downloadBtn2 = document.getElementById('downloadCvBtn2');
     if (downloadBtn1) downloadBtn1.addEventListener('click', handleCvDownload);
     if (downloadBtn2) downloadBtn2.addEventListener('click', handleCvDownload);
     
+    // LinkedIn placeholder
     const linkedinBtn = document.getElementById('linkedinPlaceholder');
     if(linkedinBtn) {
         linkedinBtn.addEventListener('click', (e) => { e.preventDefault(); alert("LinkedIn profile coming soon — connect via email."); });
