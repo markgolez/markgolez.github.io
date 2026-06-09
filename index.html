@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Portfolio of Mark Anthony Golez: Mathematics Educator, Computer Science Instructor, Educational Technology Innovator, Data Analytics Trainer, and Systems Builder.">
+    <meta name="description" content="Portfolio of Mark Anthony Golez: Mathematics Educator, Computer Science Instructor, Educational Technology Innovator, and Systems Builder.">
     <meta name="author" content="Mark Anthony Golez">
     <title>Mark Anthony Golez | Educator & Technologist</title>
     
@@ -237,15 +237,15 @@
             color: #111827;
         }
 
-        /* Contact Section with Gradient Background */
+        /* Contact Section with Dark Background */
         #contact {
-            background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 50%, #F0FDF4 100%);
+            background: linear-gradient(135deg, #0B1A1F 0%, #0D2A2A 50%, #0B1A1F 100%);
             border-radius: 0;
             position: relative;
         }
         
         #contact .section-title {
-            color: #065F46;
+            color: #A7F3D0;
         }
         
         .contact-flex {
@@ -257,16 +257,31 @@
         
         .contact-info {
             flex: 1;
+            color: #E5E7EB;
+        }
+        
+        .contact-info a {
+            color: #A7F3D0;
+            text-decoration: none;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
         }
         
         /* Contact Form Styles */
         .contact-form-card {
             flex: 1.2;
-            background: white;
+            background: #1F2A2E;
             border-radius: 16px;
             padding: 28px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-            border: 1px solid #D1FAE5;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            border: 1px solid #374151;
+        }
+        
+        .contact-form-card h3 {
+            color: #A7F3D0;
+            margin-bottom: 20px;
         }
         
         .form-group {
@@ -277,7 +292,7 @@
             display: block;
             font-size: 13px;
             font-weight: 500;
-            color: #374151;
+            color: #D1D5DB;
             margin-bottom: 6px;
         }
         
@@ -285,18 +300,25 @@
         .form-group textarea {
             width: 100%;
             padding: 10px 14px;
-            border: 1px solid #E5E7EB;
+            border: 1px solid #4B5563;
             border-radius: 8px;
             font-family: 'Inter', sans-serif;
             font-size: 14px;
+            background-color: #2D3A3E;
+            color: #F9FAFB;
             transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
         
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #138813;
-            box-shadow: 0 0 0 3px rgba(19, 136, 19, 0.1);
+            border-color: #A7F3D0;
+            box-shadow: 0 0 0 3px rgba(167, 243, 208, 0.2);
+        }
+        
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #9CA3AF;
         }
         
         .form-group textarea {
@@ -330,14 +352,14 @@
         }
         
         .form-status.success {
-            background: #DCFCE7;
-            color: #166534;
+            background: #064E3B;
+            color: #A7F3D0;
             display: block;
         }
         
         .form-status.error {
-            background: #FEE2E2;
-            color: #991B1B;
+            background: #7F1D1D;
+            color: #FECACA;
             display: block;
         }
         
@@ -346,6 +368,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            color: #E5E7EB;
         }
 
         .timeline-card {
@@ -493,10 +516,16 @@
             color: #4B5563;
         }
 
-        /* GSAP animated elements start invisible */
+        /* GSAP animated elements start invisible but avoid flicker */
         .gsap-fade {
             opacity: 0;
             visibility: hidden;
+        }
+
+        /* Fix footer disappearing animation: ensure footer always visible and animated properly */
+        footer {
+            opacity: 1;
+            visibility: visible;
         }
 
         @media (max-width: 768px) {
@@ -687,18 +716,19 @@
             <h2 class="section-title">Skills & Expertise</h2>
             <div class="skills-grid">
                 <div class="skill-category"><h3>Education & Leadership</h3><div class="skill-tags"><span class="skill-tag">Mathematics Education</span><span class="skill-tag">Curriculum Development</span><span class="skill-tag">Educational Research</span><span class="skill-tag">Faculty Development</span><span class="skill-tag">Student Mentorship</span><span class="skill-tag">Academic Coaching</span></div></div>
-                <div class="skill-category"><h3>Technology & Systems</h3><div class="skill-tags"><span class="skill-tag">Educational Technology</span><span class="skill-tag">Web Application Design</span><span class="skill-tag">Dashboard Development</span><span class="skill-tag">Process Automation</span><span class="skill-tag">Information Systems</span><span class="skill-tag">Workflow Optimization</span></div></div>
-                <div class="skill-category"><h3>Data & Analytics</h3><div class="skill-tags"><span class="skill-tag">Statistical Analysis</span><span class="skill-tag">Experimental Design</span><span class="skill-tag">Data Modeling</span><span class="skill-tag">Research Methodology</span><span class="skill-tag">Data Visualization</span><span class="skill-tag">Quantitative Research</span></div></div>
+                <div class="skill-category"><h3>Technology & Systems</h3><div class="skill-tags"><span class="skill-tag">Educational Technology</span><span class="skill-tag">Web Application Design</span><span class="skill-tag">Process Automation</span><span class="skill-tag">Information Systems</span><span class="skill-tag">Workflow Optimization</span></div></div>
+                <div class="skill-category"><h3>Data & Analytics</h3><div class="skill-tags"><span class="skill-tag">Statistical Analysis</span><span class="skill-tag">Experimental Design</span><span class="skill-tag">Data Modeling</span><span class="skill-tag">Research Methodology</span><span class="skill-tag">Quantitative Research</span></div></div>
             </div>
         </div>
     </section>
 
+    <!-- Featured Projects - Removed Data Analytics & School Dashboards component -->
     <section id="projects">
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
             <div class="grid-2">
                 <div class="card"><div class="project-title">📊 Student Behavior Management Platform</div><p>Comprehensive web-based school management platform streamlining behavior monitoring, administrative workflows, and scheduling operations.</p><ul class="feature-list"><li><strong>Behavior Management System</strong> – Centralized guidelines, digital tracking</li><li><strong>Automated Incident Reporting</strong> – Teacher workflows, analytics dashboard</li><li><strong>Teacher Leave & Substitute Management</strong> – Automated discovery</li><li><strong>Teacher & Student Scheduling</strong> – Workload management, class visibility</li></ul><div class="impact">✔ Reduced administrative workload, improved operational efficiency</div></div>
-                <div class="card"><div class="project-title">📈 Data Analytics & School Dashboards</div><p>Designing interactive dashboards and automated reporting tools for educational institutions, enabling data-informed decision-making and performance tracking.</p><ul class="feature-list"><li>Student performance analytics and early intervention systems</li><li>Teacher workload optimization & scheduling tools</li><li>Real-time academic monitoring dashboards</li></ul><div class="impact">✔ Enhanced institutional efficiency and student outcomes</div></div>
+                <!-- The second project card (Data Analytics) has been removed as requested. Only one project remains. -->
             </div>
         </div>
     </section>
@@ -707,13 +737,13 @@
         <div class="container">
             <h2 class="section-title">Mission & Vision</h2>
             <div class="mission-vision-grid">
-                <div class="mv-card"><div class="mv-icon">🎯</div><div class="mv-title">Mission</div><div class="mv-text">To cultivate an elevated level of educational quality by harnessing cutting-edge technology, intelligent data ecosystems, and human-centered innovation — designing learning systems that are adaptive, inclusive, and future-proof, empowering every learner to reach their highest potential.</div></div>
+                <div class="mv-card"><div class="mv-icon">🎯</div><div class="mv-title">Mission</div><div class="mv-text">To empower learners and educators through innovative educational technology, data-driven insights, and human-centered design — building systems that make learning accessible, engaging, and effective for all.</div></div>
                 <div class="mv-card"><div class="mv-icon">🌟</div><div class="mv-title">Vision</div><div class="mv-text">A future where every educational institution harnesses the power of technology and analytics to create seamless, personalized, and transformative learning experiences that prepare students for a rapidly changing world.</div></div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section with Form & Gradient Background -->
+    <!-- Contact Section with Dark Background & Apps Script Integration -->
     <section id="contact">
         <div class="container">
             <h2 class="section-title">Let's Build Better Learning Systems</h2>
@@ -729,9 +759,9 @@
                         <a href="#" class="btn btn-outline" id="linkedinPlaceholder">LinkedIn</a>
                     </div>
                 </div>
-                <!-- Contact Form replacing quick response card -->
+                <!-- Contact Form integrated with Google Apps Script -->
                 <div class="contact-form-card">
-                    <h3 style="font-size: 18px; margin-bottom: 20px; color: #065F46;">Send a Message</h3>
+                    <h3 style="font-size: 18px;">Send a Message</h3>
                     <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Full Name</label>
@@ -776,130 +806,51 @@
         });
     });
 
-    // ---------- GSAP Advanced Animations with delay and staggered effects ----------
+    // ---------- GSAP Advanced Animations (Fixed footer disappearing error) ----------
     gsap.registerPlugin(ScrollTrigger);
     
-    // Set initial states for elements we want to animate
-    gsap.set('.hero-content, .profile-image-wrapper, .section-title, .card, .skill-category, .mv-card, .timeline-card, .contact-info, .contact-form-card, footer', { 
+    // Set initial states for elements we want to animate (but footer stays visible)
+    gsap.set('.hero-content, .profile-image-wrapper, .section-title, .card, .skill-category, .mv-card, .timeline-card, .contact-info, .contact-form-card', { 
         opacity: 0, 
         y: 30,
         visibility: 'visible'
     });
+    // Ensure footer is always visible and not affected by GSAP hide
+    gsap.set('footer', { opacity: 1, y: 0, visibility: 'visible' });
     
-    // Create a timeline for each section with delays and staggering
     // Hero section
     gsap.to('.hero-content', {
-        scrollTrigger: {
-            trigger: '.hero',
-            start: 'top 85%',
-            toggleActions: 'play none none reverse'
-        },
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        delay: 0.1,
-        ease: 'power2.out'
+        scrollTrigger: { trigger: '.hero', start: 'top 85%', toggleActions: 'play none none reverse' },
+        opacity: 1, y: 0, duration: 0.8, delay: 0.1, ease: 'power2.out'
     });
-    
     gsap.to('.profile-image-wrapper', {
-        scrollTrigger: {
-            trigger: '.hero',
-            start: 'top 85%',
-            toggleActions: 'play none none reverse'
-        },
-        opacity: 1,
-        y: 0,
-        duration: 0.9,
-        delay: 0.3,
-        ease: 'power2.out'
+        scrollTrigger: { trigger: '.hero', start: 'top 85%', toggleActions: 'play none none reverse' },
+        opacity: 1, y: 0, duration: 0.9, delay: 0.3, ease: 'power2.out'
     });
     
-    // About section
-    gsap.to('#about .section-title', {
-        scrollTrigger: { trigger: '#about', start: 'top 80%', toggleActions: 'play none none reverse' },
-        opacity: 1, y: 0, duration: 0.6, delay: 0.1
-    });
-    gsap.to('#about .card', {
-        scrollTrigger: { trigger: '#about', start: 'top 80%', toggleActions: 'play none none reverse' },
-        opacity: 1, y: 0, duration: 0.7, delay: 0.25
-    });
+    // About, Experience, Education, Skills, Projects, Mission-Vision, Contact animations (unchanged but footer excluded)
+    gsap.to('#about .section-title', { scrollTrigger: { trigger: '#about', start: 'top 80%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.6, delay: 0.1 });
+    gsap.to('#about .card', { scrollTrigger: { trigger: '#about', start: 'top 80%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.7, delay: 0.25 });
+    gsap.to('#experience .section-title', { scrollTrigger: { trigger: '#experience', start: 'top 80%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.6 });
+    gsap.to('#experience .timeline-card', { scrollTrigger: { trigger: '#experience', start: 'top 75%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.6, stagger: 0.15, delay: 0.1 });
+    gsap.to('#education .section-title', { scrollTrigger: { trigger: '#education', start: 'top 80%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.6 });
+    gsap.to('#education .card', { scrollTrigger: { trigger: '#education', start: 'top 75%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.6, stagger: 0.12, delay: 0.1 });
+    gsap.to('#skills .section-title', { scrollTrigger: { trigger: '#skills', start: 'top 80%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.6 });
+    gsap.to('#skills .skill-category', { scrollTrigger: { trigger: '#skills', start: 'top 75%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.7, stagger: 0.12, delay: 0.1 });
+    gsap.to('#projects .section-title', { scrollTrigger: { trigger: '#projects', start: 'top 80%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.6 });
+    gsap.to('#projects .card', { scrollTrigger: { trigger: '#projects', start: 'top 75%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.7, stagger: 0.15, delay: 0.1 });
+    gsap.to('#mission-vision .section-title', { scrollTrigger: { trigger: '#mission-vision', start: 'top 80%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.6 });
+    gsap.to('#mission-vision .mv-card', { scrollTrigger: { trigger: '#mission-vision', start: 'top 75%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.7, stagger: 0.15, delay: 0.1 });
+    gsap.to('#contact .section-title', { scrollTrigger: { trigger: '#contact', start: 'top 80%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.6 });
+    gsap.to('#contact .contact-info', { scrollTrigger: { trigger: '#contact', start: 'top 75%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.7, delay: 0.15 });
+    gsap.to('#contact .contact-form-card', { scrollTrigger: { trigger: '#contact', start: 'top 75%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.7, delay: 0.3 });
     
-    // Experience section with stagger on cards
-    gsap.to('#experience .section-title', {
-        scrollTrigger: { trigger: '#experience', start: 'top 80%', toggleActions: 'play none none reverse' },
-        opacity: 1, y: 0, duration: 0.6
-    });
-    gsap.to('#experience .timeline-card', {
-        scrollTrigger: { trigger: '#experience', start: 'top 75%', toggleActions: 'play none none reverse' },
-        opacity: 1, y: 0, duration: 0.6, stagger: 0.15, delay: 0.1
-    });
+    // Footer is not animated to disappear - stays always visible
     
-    // Education section
-    gsap.to('#education .section-title', {
-        scrollTrigger: { trigger: '#education', start: 'top 80%', toggleActions: 'play none none reverse' },
-        opacity: 1, y: 0, duration: 0.6
-    });
-    gsap.to('#education .card', {
-        scrollTrigger: { trigger: '#education', start: 'top 75%', toggleActions: 'play none none reverse' },
-        opacity: 1, y: 0, duration: 0.6, stagger: 0.12, delay: 0.1
-    });
-    
-    // Skills section
-    gsap.to('#skills .section-title', {
-        scrollTrigger: { trigger: '#skills', start: 'top 80%', toggleActions: 'play none none reverse' },
-        opacity: 1, y: 0, duration: 0.6
-    });
-    gsap.to('#skills .skill-category', {
-        scrollTrigger: { trigger: '#skills', start: 'top 75%', toggleActions: 'play none none reverse' },
-        opacity: 1, y: 0, duration: 0.7, stagger: 0.12, delay: 0.1
-    });
-    
-    // Projects section
-    gsap.to('#projects .section-title', {
-        scrollTrigger: { trigger: '#projects', start: 'top 80%', toggleActions: 'play none none reverse' },
-        opacity: 1, y: 0, duration: 0.6
-    });
-    gsap.to('#projects .card', {
-        scrollTrigger: { trigger: '#projects', start: 'top 75%', toggleActions: 'play none none reverse' },
-        opacity: 1, y: 0, duration: 0.7, stagger: 0.15, delay: 0.1
-    });
-    
-    // Mission & Vision
-    gsap.to('#mission-vision .section-title', {
-        scrollTrigger: { trigger: '#mission-vision', start: 'top 80%', toggleActions: 'play none none reverse' },
-        opacity: 1, y: 0, duration: 0.6
-    });
-    gsap.to('#mission-vision .mv-card', {
-        scrollTrigger: { trigger: '#mission-vision', start: 'top 75%', toggleActions: 'play none none reverse' },
-        opacity: 1, y: 0, duration: 0.7, stagger: 0.15, delay: 0.1
-    });
-    
-    // Contact section with gradient background elements
-    gsap.to('#contact .section-title', {
-        scrollTrigger: { trigger: '#contact', start: 'top 80%', toggleActions: 'play none none reverse' },
-        opacity: 1, y: 0, duration: 0.6
-    });
-    gsap.to('#contact .contact-info', {
-        scrollTrigger: { trigger: '#contact', start: 'top 75%', toggleActions: 'play none none reverse' },
-        opacity: 1, y: 0, duration: 0.7, delay: 0.15
-    });
-    gsap.to('#contact .contact-form-card', {
-        scrollTrigger: { trigger: '#contact', start: 'top 75%', toggleActions: 'play none none reverse' },
-        opacity: 1, y: 0, duration: 0.7, delay: 0.3
-    });
-    
-    // Footer
-    gsap.to('footer', {
-        scrollTrigger: { trigger: 'footer', start: 'top 90%', toggleActions: 'play none none reverse' },
-        opacity: 1, y: 0, duration: 0.5
-    });
-    
-    // Also handle any card that might not have been captured (redundant safety)
-    gsap.set('.card, .skill-category, .mv-card, .timeline-card', { visibility: 'visible' });
-    
-    // Contact Form submission handler (simulated)
+    // Contact Form submission with Google Apps Script endpoint
     const contactForm = document.getElementById('contactForm');
     const formStatus = document.getElementById('formStatus');
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzuPk9uGxnMIjcJqd9OLA8wFcrZyy3UUgHYHc0VZzyblhM0cAFtPwrcF9QzdtM-i9mkMw/exec';
     
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -922,18 +873,29 @@
             return;
         }
         
-        // Simulate sending message (in real scenario, connect to backend)
         formStatus.textContent = 'Sending message...';
         formStatus.className = 'form-status';
         formStatus.style.display = 'block';
         
-        // Simulate network delay
-        setTimeout(() => {
+        try {
+            // Build URL with query parameters for GET request to Apps Script
+            const encodedName = encodeURIComponent(name);
+            const encodedEmail = encodeURIComponent(email);
+            const encodedMessage = encodeURIComponent(message);
+            const requestUrl = `${APPS_SCRIPT_URL}?fullname=${encodedName}&email=${encodedEmail}&message=${encodedMessage}`;
+            
+            const response = await fetch(requestUrl, { method: 'GET', mode: 'no-cors' });
+            // Using no-cors mode because Apps Script redirects; we treat any response as success if no network error.
             formStatus.textContent = `✨ Thanks ${name}! Your message has been sent. I'll respond within 24 hours.`;
             formStatus.className = 'form-status success';
             contactForm.reset();
             setTimeout(() => { formStatus.className = 'form-status'; }, 4000);
-        }, 1200);
+        } catch (error) {
+            console.error('Form submission error:', error);
+            formStatus.textContent = '⚠️ Unable to send message. Please email me directly.';
+            formStatus.className = 'form-status error';
+            setTimeout(() => { formStatus.className = 'form-status'; }, 4000);
+        }
     });
     
     // CV Download Logic
