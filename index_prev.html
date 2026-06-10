@@ -1,15 +1,17 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Portfolio of Mark Anthony Golez: Mathematics Educator, Computer Science Instructor, Educational Technology Innovator, Data Analytics Trainer, and Systems Builder.">
+    <meta name="description" content="Portfolio of Mark Anthony Golez: Mathematics Educator, Computer Science Instructor, Educational Technology Innovator, and Systems Builder.">
     <meta name="author" content="Mark Anthony Golez">
     <title>Mark Anthony Golez | Educator & Technologist</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- GSAP library for advanced animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     
     <style>
         * {
@@ -126,10 +128,18 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
         }
 
+        /* Original grid-2 kept for other sections, but overridden for experience if needed */
         .grid-2 {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 16px;
+        }
+        
+        /* Vertical stack container for experience section only */
+        .experience-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .hero {
@@ -198,7 +208,6 @@
             margin-bottom: 32px;
         }
 
-        /* Image style - larger, rectangular, no border, no shadow, no clipping */
         .profile-image-wrapper {
             flex: 1.2;
             display: flex;
@@ -236,8 +245,143 @@
             color: #111827;
         }
 
+        /* Contact Section with Dark Background */
+        #contact {
+            background: linear-gradient(135deg, #0B1A1F 0%, #0D2A2A 50%, #0B1A1F 100%);
+            border-radius: 0;
+            position: relative;
+        }
+        
+        #contact .section-title {
+            color: #A7F3D0;
+        }
+        
+        .contact-flex {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 32px;
+        }
+        
+        .contact-info {
+            flex: 1;
+            color: #E5E7EB;
+        }
+        
+        .contact-info a {
+            color: #A7F3D0;
+            text-decoration: none;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Contact Form Styles */
+        .contact-form-card {
+            flex: 1.2;
+            background: #1F2A2E;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            border: 1px solid #374151;
+        }
+        
+        .contact-form-card h3 {
+            color: #A7F3D0;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: #D1D5DB;
+            margin-bottom: 6px;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #4B5563;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            background-color: #2D3A3E;
+            color: #F9FAFB;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #A7F3D0;
+            box-shadow: 0 0 0 3px rgba(167, 243, 208, 0.2);
+        }
+        
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #9CA3AF;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .submit-btn {
+            background: #138813;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            background: #0f6e0f;
+        }
+        
+        .form-status {
+            margin-top: 16px;
+            font-size: 13px;
+            text-align: center;
+            padding: 8px;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .form-status.success {
+            background: #064E3B;
+            color: #A7F3D0;
+            display: block;
+        }
+        
+        .form-status.error {
+            background: #7F1D1D;
+            color: #FECACA;
+            display: block;
+        }
+        
+        .contact-detail {
+            margin: 16px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #E5E7EB;
+        }
+
         .timeline-card {
-            margin-bottom: 24px;
+            margin-bottom: 0;
+            width: 100%;
         }
 
         .exp-header {
@@ -272,7 +416,7 @@
 
         .exp-list li {
             font-size: 14px;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             display: flex;
             align-items: baseline;
             gap: 8px;
@@ -281,6 +425,7 @@
         .exp-list li::before {
             content: "—";
             color: #138813;
+            flex-shrink: 0;
         }
 
         .skills-grid {
@@ -342,20 +487,6 @@
             color: #138813;
         }
 
-        .achievements-wrapper {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-            gap: 16px;
-        }
-
-        .achievement-item {
-            background: white;
-            border: 1px solid #EFEFF4;
-            border-radius: 8px;
-            padding: 20px;
-        }
-
-        /* Mission Vision Styles */
         .mission-vision-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -395,33 +526,16 @@
             color: #4B5563;
         }
 
-        .contact-flex {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 32px;
-        }
-
-        .contact-info {
-            flex: 1;
-        }
-
-        .contact-detail {
-            margin: 16px 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .fade-in {
+        /* GSAP animated elements start invisible but avoid flicker */
+        .gsap-fade {
             opacity: 0;
-            transform: translateY(8px);
-            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+            visibility: hidden;
         }
 
-        .fade-in.appear {
+        /* Fix footer disappearing animation: ensure footer always visible and animated properly */
+        footer {
             opacity: 1;
-            transform: translateY(0);
+            visibility: visible;
         }
 
         @media (max-width: 768px) {
@@ -463,6 +577,9 @@
             .section-title {
                 text-align: center;
             }
+            .contact-flex {
+                flex-direction: column;
+            }
             .contact-detail {
                 justify-content: center;
             }
@@ -483,7 +600,6 @@
             font-size: 13px;
         }
         
-        /* Toast notification for download error */
         .toast-msg {
             position: fixed;
             bottom: 24px;
@@ -530,9 +646,8 @@
             <div class="hero-content">
                 <div class="hero-tagline">Educator. Technologist. Problem Solver.</div>
                 <h1>Building <br>Better Systems.</h1>
-                <p class="hero-desc">Mathematics and Computer Science educator with over a decade of experience designing learning systems, educational technology solutions, and data-driven school workflows.</p>
+                <p class="hero-desc">Driving an elevated standard of academic excellence by seamlessly integrating advanced technology, data intelligence, and human-centered design — transforming traditional classrooms into high-impact, future-ready learning ecosystems.</p>
                 <div class="button-group">
-                    <!-- CV Download button triggers download from root directory -->
                     <a href="#" class="btn btn-primary" id="downloadCvBtn">📄 Download CV</a>
                     <a href="#contact" class="btn btn-outline">Contact</a>
                 </div>
@@ -543,8 +658,8 @@
                     <div class="stat-item"><span class="stat-number">EdTech</span><br>Systems Builder</div>
                 </div>
             </div>
-            <div class="profile-image-wrapper fade-in">
-                <img src="https://i.postimg.cc/zvXPJGv2/Chat-GPT-Image-Jun-9-2026-10-31-37-AM.png" 
+            <div class="profile-image-wrapper">
+                <img src="https://i.postimg.cc/qMGWs4kC/Chat-GPT-Image-Jun-10-2026-09-11-23-AM.png" 
                      alt="Mark Anthony Golez - half body professional portrait"
                      class="profile-image"
                      onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'533\' viewBox=\'0 0 400 533\'%3E%3Crect width=\'400\' height=\'533\' fill=\'%23F3F4F6\'/%3E%3Ccircle cx=\'200\' cy=\'180\' r=\'70\' fill=\'%239CA3AF\'/%3E%3Crect x=\'120\' y=\'280\' width=\'160\' height=\'180\' rx=\'10\' fill=\'%239CA3AF\'/%3E%3C/svg%3E';">
@@ -552,11 +667,10 @@
         </div>
     </div>
 
-    <!-- SECTION 1: About -->
     <section id="about">
         <div class="container">
             <h2 class="section-title">About</h2>
-            <div class="card fade-in">
+            <div class="card">
                 <div style="margin-bottom: 12px;"><strong style="color:#111827;">Mark Anthony Golez</strong> · Thailand</div>
                 <p>Mathematics and Computer Science educator with extensive experience in advanced mathematics instruction, educational leadership, curriculum development, faculty training, analytics, and educational technology innovation. Passionate about improving education through technology, process automation, and data-driven decision making.</p>
                 <div style="margin-top: 16px; display: flex; gap: 12px; flex-wrap: wrap;">
@@ -567,122 +681,125 @@
         </div>
     </section>
 
-    <!-- SECTION 2: Experience -->
+    <!-- Experience Section: Modified to vertical stack instead of grid -->
     <section id="experience">
         <div class="container">
-            <h2 class="section-title">Experience</h2>
-            <div class="grid-2">
-                <div class="card timeline-card fade-in">
-                    <div class="exp-header"><span class="exp-title">Mathematics and Computer Science Teacher</span><span class="exp-date">2017 – Present</span></div>
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="experience-stack">
+                <!-- Mathematics and Computer Science Teacher - Detailed -->
+                <div class="card timeline-card">
+                    <div class="exp-header">
+                        <span class="exp-title">Mathematics and Computer Science Teacher</span>
+                        <span class="exp-date">May 2017 – Present</span>
+                    </div>
                     <div class="exp-sub">St. Joseph Convent School, Thailand</div>
                     <ul class="exp-list">
-                        <li>Advanced Mathematics instruction (Calculus, Trigonometry, Matrices, Statistics)</li>
-                        <li>Computer Science & technology-integrated learning</li>
-                        <li>Curriculum development & faculty workshops</li>
-                        <li>STEM & Mathematics coaching, academic competitions leadership</li>
-                        <li>Educational research presentations & SAP ASEAN Data Analytics Instructor 2022</li>
+                        <li><strong>Teaching & Curriculum Delivery:</strong> Teaching Advanced level Mathematics specializing in Calculus, Trigonometry, Algebra, Matrices, Vectors, Logic, and Statistics using student-centered methodologies; designed differentiated lesson plans aligned with international curricula; enhanced engagement through latest technology integration and multimedia resources.</li>
+                        <li><strong>Student Development & Assessment:</strong> Designed and implemented diverse evaluation methods including project-based assessments to develop critical thinking; developed personalized feedback systems and adaptive learning tools to support individual student's progress; established peer mentoring programs enhancing engagement and leadership skills.</li>
+                        <li><strong>Extracurricular & Community Leadership:</strong> Organize and host academic competitions and events; coach Math Clubs and STEM teams, guiding students to success in interschool competitions in Thailand.</li>
+                        <li><strong>Professional Collaboration & Growth:</strong> Conducts workshops for faculty on 21st-century literacies, technology integration, and innovative pedagogies; presents at conferences on educational research and teaching best practices; SAP ASEAN Data Analytics Instructor 2022.</li>
                     </ul>
                 </div>
-                <div class="card timeline-card fade-in">
-                    <div class="exp-header"><span class="exp-title">Mathematics and MAPEH Teacher</span><span class="exp-date">2013 – 2017</span></div>
+
+                <!-- Mathematics and MAPEH Teacher - Detailed -->
+                <div class="card timeline-card">
+                    <div class="exp-header">
+                        <span class="exp-title">Mathematics and MAPEH Teacher</span>
+                        <span class="exp-date">May 2013 – March 2017</span>
+                    </div>
                     <div class="exp-sub">Naga College Foundation, Philippines</div>
                     <ul class="exp-list">
-                        <li>Mathematics instruction & educational workshops</li>
-                        <li>Inter-school competitions & event leadership</li>
-                        <li>Teacher mentoring & football/futsal coaching</li>
-                        <li>SRA Mathematics program coordination</li>
+                        <li>Planned and executed educational workshops, seminars, and inter-school competitions providing students opportunities to showcase academic skills.</li>
+                        <li>Chaired multiple committees for school events, demonstrating strong leadership and organizational skills.</li>
+                        <li>Coordinated SRA Mathematics programs, implementing innovative teaching methods that led to improved student performance.</li>
+                        <li>Provided mentorship to new teachers and student-teachers, fostering a culture of professional growth and collaboration.</li>
+                        <li>Actively coached football and futsal teams, leading them to multiple city and regional championship victories.</li>
+                        <li>Served as an event host and facilitator, ensuring student-led activities were engaging and empowering.</li>
+                        <li>Provided mentorship to students, helping them achieve high scores on standardized tests and increase confidence in mathematics.</li>
                     </ul>
                 </div>
-                <div class="card timeline-card fade-in">
-                    <div class="exp-header"><span class="exp-title">Private Tutor</span><span class="exp-date">2014 – Present</span></div>
-                    <div class="exp-sub">International school students</div>
-                    <ul class="exp-list"><li>Tailored mathematics tutoring, activity-based learning</li><li>Interactive educational sessions, test score improvement</li></ul>
+
+                <!-- Private Tutor - Detailed -->
+                <div class="card timeline-card">
+                    <div class="exp-header">
+                        <span class="exp-title">Private Tutor</span>
+                        <span class="exp-date">2014 – Present</span>
+                    </div>
+                    <div class="exp-sub">Self-Employed · International School Students (Thailand/Philippines)</div>
+                    <ul class="exp-list">
+                        <li>Conducts tailored sessions for students from international schools, integrating activity-based learning to enhance understanding.</li>
+                        <li>Designs and facilitates interactive educational instructions to significantly improve student engagement and academic outcomes.</li>
+                        <li>Focuses on mathematics, test preparation, and concept reinforcement using adaptive teaching strategies.</li>
+                    </ul>
                 </div>
-                <div class="card timeline-card fade-in">
-                    <div class="exp-header"><span class="exp-title">Statistician Consultant</span></div>
-                    <div class="exp-sub">PhD & Master's research support</div>
-                    <ul class="exp-list"><li>Experimental design, advanced data modeling</li><li>Dissertation support, method rigor & data integrity</li></ul>
+
+                <!-- Statistician Consultant - Detailed -->
+                <div class="card timeline-card">
+                    <div class="exp-header">
+                        <span class="exp-title">Statistician Consultant</span>
+                        <span class="exp-date">2020 – Present</span>
+                    </div>
+                    <div class="exp-sub">Freelance · PhD & Master's Research Support</div>
+                    <ul class="exp-list">
+                        <li>Provides statistical consultations for PhD and Master's students, advising on experimental designs and advanced data modeling techniques.</li>
+                        <li>Analyzes data using latest statistical software for dissertations and publications, ensuring methodological rigor and data integrity.</li>
+                        <li>Supports researchers in quantitative analysis, interpretation, and presentation of complex data structures.</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 3: Education -->
     <section id="education">
         <div class="container">
-            <h2 class="section-title">Education</h2>
+            <h2 class="section-title">Education & Credentials</h2>
             <div class="grid-2">
-                <div class="card fade-in"><div style="font-weight:600;">Master of Science in Education (Mathematics)</div><div>Central Luzon State University</div><div class="exp-date">2020 – 2022</div></div>
-                <div class="card fade-in"><div style="font-weight:600;">BS Mathematics (Cum Laude)</div><div>Ateneo de Naga University</div><div class="exp-date">2009 – 2013</div></div>
-                <div class="card fade-in"><div style="font-weight:600;">BS Education (Mathematics) - Cum Laude</div><div>Ateneo de Naga University</div><div class="exp-date">2009 – 2013</div></div>
-                <div class="card fade-in"><div style="font-weight:600;">PC Operations/Data Processing NC II</div><div>Philippine Computer Foundation College</div><div class="exp-date">2006 – 2007</div></div>
+                <div class="card"><div style="font-weight:600;">Master of Science in Education (Major in Mathematics)</div><div>Central Luzon State University, Philippines</div><div class="exp-date">Aug 2020 – Jul 2022</div></div>
+                <div class="card"><div style="font-weight:600;">Bachelor of Science in Education (Mathematics) - Cum Laude</div><div>Ateneo de Naga University, Philippines</div><div class="exp-date">May 2009 – May 2013</div></div>
+                <div class="card"><div style="font-weight:600;">Bachelor of Science in Mathematics - Cum Laude</div><div>Ateneo de Naga University, Philippines</div><div class="exp-date">May 2009 – May 2013</div></div>
+                <div class="card"><div style="font-weight:600;">PC Operations/Data Processing National Certificate II (NC II)</div><div>Philippine Computer Foundation College</div><div class="exp-date">2006 – 2007</div></div>
+            </div>
+            <div style="margin-top: 24px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;">
+                <div class="skill-tag" style="background:#F0FDF4;">🏆 9th Regional Placer - Teacher Board Examination 2013</div>
+                <div class="skill-tag" style="background:#F0FDF4;">🎓 Scholarship Awardee</div>
+                <div class="skill-tag" style="background:#F0FDF4;">⭐ Cum Laude Graduate (Double Degree)</div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 4: Skills -->
     <section id="skills">
         <div class="container">
             <h2 class="section-title">Skills & Expertise</h2>
             <div class="skills-grid">
-                <div class="skill-category fade-in"><h3>Education & Leadership</h3><div class="skill-tags"><span class="skill-tag">Mathematics Education</span><span class="skill-tag">Curriculum Development</span><span class="skill-tag">Educational Research</span><span class="skill-tag">Faculty Development</span><span class="skill-tag">Student Mentorship</span><span class="skill-tag">Academic Coaching</span></div></div>
-                <div class="skill-category fade-in"><h3>Technology & Systems</h3><div class="skill-tags"><span class="skill-tag">Educational Technology</span><span class="skill-tag">Web Application Design</span><span class="skill-tag">Dashboard Development</span><span class="skill-tag">Process Automation</span><span class="skill-tag">Information Systems</span><span class="skill-tag">Workflow Optimization</span></div></div>
-                <div class="skill-category fade-in"><h3>Data & Analytics</h3><div class="skill-tags"><span class="skill-tag">Statistical Analysis</span><span class="skill-tag">Experimental Design</span><span class="skill-tag">Data Modeling</span><span class="skill-tag">Research Methodology</span><span class="skill-tag">Data Visualization</span><span class="skill-tag">Quantitative Research</span></div></div>
+                <div class="skill-category"><h3>Education & Leadership</h3><div class="skill-tags"><span class="skill-tag">Mathematics Education</span><span class="skill-tag">Curriculum Development</span><span class="skill-tag">Educational Research</span><span class="skill-tag">Faculty Development</span><span class="skill-tag">Student Mentorship</span><span class="skill-tag">Academic Coaching</span><span class="skill-tag">Peer Mentoring Programs</span><span class="skill-tag">Project-Based Assessment</span></div></div>
+                <div class="skill-category"><h3>Technology & Systems</h3><div class="skill-tags"><span class="skill-tag">Educational Technology</span><span class="skill-tag">Web Application Design</span><span class="skill-tag">Process Automation</span><span class="skill-tag">Information Systems</span><span class="skill-tag">Workflow Optimization</span><span class="skill-tag">Multimedia Integration</span><span class="skill-tag">Adaptive Learning Tools</span></div></div>
+                <div class="skill-category"><h3>Data & Analytics</h3><div class="skill-tags"><span class="skill-tag">Statistical Analysis</span><span class="skill-tag">Experimental Design</span><span class="skill-tag">Data Modeling</span><span class="skill-tag">Research Methodology</span><span class="skill-tag">Quantitative Research</span><span class="skill-tag">SAP Analytics</span><span class="skill-tag">Data Visualization</span></div></div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 5: Featured Projects -->
+    <!-- Featured Projects - Removed Data Analytics & School Dashboards component -->
     <section id="projects">
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
             <div class="grid-2">
-                <div class="card fade-in">
-                    <div class="project-title">📊 Student Behavior Management Platform</div>
-                    <p>Comprehensive web-based school management platform streamlining behavior monitoring, administrative workflows, and scheduling operations.</p>
-                    <ul class="feature-list">
-                        <li><strong>Behavior Management System</strong> – Centralized guidelines, digital tracking</li>
-                        <li><strong>Automated Incident Reporting</strong> – Teacher workflows, analytics dashboard</li>
-                        <li><strong>Teacher Leave & Substitute Management</strong> – Automated discovery</li>
-                        <li><strong>Teacher & Student Scheduling</strong> – Workload management, class visibility</li>
-                    </ul>
-                    <div class="impact">✔ Reduced administrative workload, improved operational efficiency</div>
-                </div>
-                <!-- Additional project info (balanced layout) -->
-                <div class="card fade-in">
-                    <div class="project-title">📈 Data Analytics & School Dashboards</div>
-                    <p>Designing interactive dashboards and automated reporting tools for educational institutions, enabling data-informed decision-making and performance tracking.</p>
-                    <ul class="feature-list">
-                        <li>Student performance analytics and early intervention systems</li>
-                        <li>Teacher workload optimization & scheduling tools</li>
-                        <li>Real-time academic monitoring dashboards</li>
-                    </ul>
-                    <div class="impact">✔ Enhanced institutional efficiency and student outcomes</div>
-                </div>
+                <div class="card"><div class="project-title">📊 Student Behavior Management Platform</div><p>Comprehensive web-based school management platform streamlining behavior monitoring, administrative workflows, and scheduling operations.</p><ul class="feature-list"><li><strong>Behavior Management System</strong> – Centralized guidelines, digital tracking</li><li><strong>Automated Incident Reporting</strong> – Teacher workflows, analytics dashboard</li><li><strong>Teacher Leave & Substitute Management</strong> – Automated discovery</li><li><strong>Teacher & Student Scheduling</strong> – Workload management, class visibility</li></ul><div class="impact">✔ Reduced administrative workload, improved operational efficiency</div></div>
+                <!-- The second project card (Data Analytics) has been removed as requested. Only one project remains. -->
             </div>
         </div>
     </section>
 
-    <!-- SECTION 6: Mission & Vision -->
     <section id="mission-vision">
         <div class="container">
             <h2 class="section-title">Mission & Vision</h2>
             <div class="mission-vision-grid">
-                <div class="mv-card fade-in">
-                    <div class="mv-icon">🎯</div>
-                    <div class="mv-title">Mission</div>
-                    <div class="mv-text">To empower learners and educators through innovative educational technology, data-driven insights, and human-centered design — building systems that make learning accessible, engaging, and effective for all.</div>
-                </div>
-                <div class="mv-card fade-in">
-                    <div class="mv-icon">🌟</div>
-                    <div class="mv-title">Vision</div>
-                    <div class="mv-text">A future where every educational institution harnesses the power of technology and analytics to create seamless, personalized, and transformative learning experiences that prepare students for a rapidly changing world.</div>
-                </div>
+                <div class="mv-card"><div class="mv-icon">🎯</div><div class="mv-title">Mission</div><div class="mv-text">To empower learners and educators through innovative educational technology, data-driven insights, and human-centered design — building systems that make learning accessible, engaging, and effective for all.</div></div>
+                <div class="mv-card"><div class="mv-icon">🌟</div><div class="mv-title">Vision</div><div class="mv-text">A future where every educational institution harnesses the power of technology and analytics to create seamless, personalized, and transformative learning experiences that prepare students for a rapidly changing world.</div></div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 7: Contact -->
+    <!-- Contact Section with Dark Background & Apps Script Integration -->
     <section id="contact">
         <div class="container">
             <h2 class="section-title">Let's Build Better Learning Systems</h2>
@@ -698,7 +815,26 @@
                         <a href="#" class="btn btn-outline" id="linkedinPlaceholder">LinkedIn</a>
                     </div>
                 </div>
-                <div class="card" style="flex:1;"><p style="font-weight:500;">✉️ Quick response</p><p style="font-size:13px; color:#6B7280;">Reach out for collaborations, speaking, or consulting.</p></div>
+                <!-- Contact Form integrated with Google Apps Script -->
+                <div class="contact-form-card">
+                    <h3 style="font-size: 18px;">Send a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required placeholder="you@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required placeholder="Tell me about your project or collaboration idea..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message ✉️</button>
+                        <div id="formStatus" class="form-status"></div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -708,7 +844,6 @@
     <div class="container">© 2026 Mark Anthony Golez. All rights reserved.</div>
 </footer>
 
-<!-- Toast message for user feedback -->
 <div id="downloadToast" class="toast-msg"></div>
 
 <script>
@@ -727,78 +862,110 @@
         });
     });
 
-    // Intersection Observer for fade-in animations
-    const fadeElements = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('appear');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.05 });
+    // GSAP Advanced Animations
+    gsap.registerPlugin(ScrollTrigger);
     
-    fadeElements.forEach(el => observer.observe(el));
+    // Set initial states for elements we want to animate
+    gsap.set('.hero-content, .profile-image-wrapper, .section-title, .card, .skill-category, .mv-card, .timeline-card, .contact-info, .contact-form-card', { 
+        opacity: 0, 
+        y: 30,
+        visibility: 'visible'
+    });
+    gsap.set('footer', { opacity: 1, y: 0, visibility: 'visible' });
     
-    setTimeout(() => {
-        fadeElements.forEach(el => {
-            const rect = el.getBoundingClientRect();
-            if(rect.top < window.innerHeight - 100) el.classList.add('appear');
-        });
-    }, 100);
-
-    // ------------------------------------------------------------------
-    // MODIFIED CV DOWNLOAD FUNCTION: fetch from root directory with filename "Mark Golez - CV.pdf"
-    // ------------------------------------------------------------------
+    gsap.to('.hero-content', { scrollTrigger: { trigger: '.hero', start: 'top 85%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.8, delay: 0.1, ease: 'power2.out' });
+    gsap.to('.profile-image-wrapper', { scrollTrigger: { trigger: '.hero', start: 'top 85%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.9, delay: 0.3, ease: 'power2.out' });
+    gsap.to('#about .section-title', { scrollTrigger: { trigger: '#about', start: 'top 80%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.6, delay: 0.1 });
+    gsap.to('#about .card', { scrollTrigger: { trigger: '#about', start: 'top 80%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.7, delay: 0.25 });
+    gsap.to('#experience .section-title', { scrollTrigger: { trigger: '#experience', start: 'top 80%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.6 });
+    gsap.to('#experience .timeline-card', { scrollTrigger: { trigger: '#experience', start: 'top 75%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.6, stagger: 0.15, delay: 0.1 });
+    gsap.to('#education .section-title', { scrollTrigger: { trigger: '#education', start: 'top 80%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.6 });
+    gsap.to('#education .card', { scrollTrigger: { trigger: '#education', start: 'top 75%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.6, stagger: 0.12, delay: 0.1 });
+    gsap.to('#skills .section-title', { scrollTrigger: { trigger: '#skills', start: 'top 80%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.6 });
+    gsap.to('#skills .skill-category', { scrollTrigger: { trigger: '#skills', start: 'top 75%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.7, stagger: 0.12, delay: 0.1 });
+    gsap.to('#projects .section-title', { scrollTrigger: { trigger: '#projects', start: 'top 80%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.6 });
+    gsap.to('#projects .card', { scrollTrigger: { trigger: '#projects', start: 'top 75%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.7, stagger: 0.15, delay: 0.1 });
+    gsap.to('#mission-vision .section-title', { scrollTrigger: { trigger: '#mission-vision', start: 'top 80%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.6 });
+    gsap.to('#mission-vision .mv-card', { scrollTrigger: { trigger: '#mission-vision', start: 'top 75%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.7, stagger: 0.15, delay: 0.1 });
+    gsap.to('#contact .section-title', { scrollTrigger: { trigger: '#contact', start: 'top 80%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.6 });
+    gsap.to('#contact .contact-info', { scrollTrigger: { trigger: '#contact', start: 'top 75%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.7, delay: 0.15 });
+    gsap.to('#contact .contact-form-card', { scrollTrigger: { trigger: '#contact', start: 'top 75%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.7, delay: 0.3 });
+    
+    // Contact Form submission with Google Apps Script endpoint
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzuPk9uGxnMIjcJqd9OLA8wFcrZyy3UUgHYHc0VZzyblhM0cAFtPwrcF9QzdtM-i9mkMw/exec';
+    
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+        if (!name || !email || !message) {
+            formStatus.textContent = 'Please fill in all fields.';
+            formStatus.className = 'form-status error';
+            setTimeout(() => { formStatus.className = 'form-status'; }, 3000);
+            return;
+        }
+        if (!email.includes('@') || !email.includes('.')) {
+            formStatus.textContent = 'Please enter a valid email address.';
+            formStatus.className = 'form-status error';
+            setTimeout(() => { formStatus.className = 'form-status'; }, 3000);
+            return;
+        }
+        formStatus.textContent = 'Sending message...';
+        formStatus.className = 'form-status';
+        formStatus.style.display = 'block';
+        try {
+            const encodedName = encodeURIComponent(name);
+            const encodedEmail = encodeURIComponent(email);
+            const encodedMessage = encodeURIComponent(message);
+            const requestUrl = `${APPS_SCRIPT_URL}?fullname=${encodedName}&email=${encodedEmail}&message=${encodedMessage}`;
+            await fetch(requestUrl, { method: 'GET', mode: 'no-cors' });
+            formStatus.textContent = `✨ Thanks ${name}! Your message has been sent. I'll respond within 24 hours.`;
+            formStatus.className = 'form-status success';
+            contactForm.reset();
+            setTimeout(() => { formStatus.className = 'form-status'; }, 4000);
+        } catch (error) {
+            console.error('Form submission error:', error);
+            formStatus.textContent = '⚠️ Unable to send message. Please email me directly.';
+            formStatus.className = 'form-status error';
+            setTimeout(() => { formStatus.className = 'form-status'; }, 4000);
+        }
+    });
+    
+    // CV Download Logic
     function downloadCVFromRoot() {
         const fileName = "Mark Golez - CV.pdf";
-        // Construct path using root directory (same origin, root-relative)
-        // Using absolute path from root: "/Mark Golez - CV.pdf". Ensure the file is placed in the server's root.
         const fileUrl = `/${fileName}`;
-        
-        // Create temporary anchor to trigger download
         const link = document.createElement('a');
         link.href = fileUrl;
-        link.download = fileName;  // Suggested filename for download
+        link.download = fileName;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-        
-        // Optional: Show toast notification to inform user about the download attempt
         const toast = document.getElementById('downloadToast');
         toast.textContent = `Downloading "${fileName}" from server root...`;
         toast.classList.add('show');
-        setTimeout(() => {
-            toast.classList.remove('show');
-        }, 2000);
+        setTimeout(() => { toast.classList.remove('show'); }, 2000);
     }
     
-    // Enhanced download with error handling: In case the file fails to load (e.g., network error or file missing),
-    // we won't intercept errors automatically, but we provide a friendly message.
-    // To provide robust feedback, we attach a click handler that attempts download and shows a notification
-    // that the file should be present in the root.
     function handleCvDownload(e) {
         e.preventDefault();
         downloadCVFromRoot();
-        // Additional fallback note: The file must be present in the server's root directory with exact name "Mark Golez - CV.pdf"
-        // (case-sensitive). If missing, browser will show typical "Failed" message; we add an informative toast.
         setTimeout(() => {
             const toast = document.getElementById('downloadToast');
             toast.textContent = "⚠️ Ensure 'Mark Golez - CV.pdf' exists in the website root folder.";
             toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
+            setTimeout(() => { toast.classList.remove('show'); }, 3000);
         }, 500);
     }
     
-    // Attach event listeners to both Download CV buttons
     const downloadBtn1 = document.getElementById('downloadCvBtn');
     const downloadBtn2 = document.getElementById('downloadCvBtn2');
     if (downloadBtn1) downloadBtn1.addEventListener('click', handleCvDownload);
     if (downloadBtn2) downloadBtn2.addEventListener('click', handleCvDownload);
     
-    // LinkedIn placeholder
     const linkedinBtn = document.getElementById('linkedinPlaceholder');
     if(linkedinBtn) {
         linkedinBtn.addEventListener('click', (e) => { e.preventDefault(); alert("LinkedIn profile coming soon — connect via email."); });
