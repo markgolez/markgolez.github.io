@@ -862,7 +862,7 @@
         </div>
     </section>
 
-    <!-- Contact Section with Dark Background & Apps Script Integration -->
+    <!-- Contact Section with Dark Background & Modified Buttons: Email Me replaced with Download CV, Download CV replaced with Transcript, LinkedIn removed -->
     <section id="contact">
         <div class="container">
             <h2 class="section-title">Let's Build Better Learning Systems</h2>
@@ -873,9 +873,11 @@
                     <div class="contact-detail"><i data-lucide="phone" size="16"></i> +66 82 347 5294</div>
                     <div class="contact-detail"><i data-lucide="map-pin" size="16"></i> Thailand</div>
                     <div style="display: flex; gap: 16px; margin-top: 24px; flex-wrap: wrap;">
-                        <a href="mailto:golezmanthony@gmail.com" class="btn btn-primary">Email Me</a>
-                        <a href="#" id="downloadCvBtn2" class="btn btn-outline">Download CV</a>
-                        <a href="#" class="btn btn-outline" id="linkedinPlaceholder">LinkedIn</a>
+                        <!-- REPLACED: Email Me button is now Download CV -->
+                        <a href="#" id="downloadCvBtnContact" class="btn btn-primary">📄 Download CV</a>
+                        <!-- REPLACED: Download CV button is now Download Transcript of Records -->
+                        <a href="#" id="downloadTranscriptBtn" class="btn btn-outline">📜 Download Transcript of Records</a>
+                        <!-- LinkedIn button REMOVED entirely -->
                     </div>
                 </div>
                 <!-- Contact Form integrated with Google Apps Script -->
@@ -997,7 +999,7 @@
         }
     });
     
-    // CV Download Logic
+    // CV Download Logic (both hero button and contact section Download CV button)
     function downloadCVFromRoot() {
         const fileName = "Mark Golez - CV.pdf";
         const fileUrl = `/${fileName}`;
@@ -1024,15 +1026,41 @@
         }, 500);
     }
     
-    const downloadBtn1 = document.getElementById('downloadCvBtn');
-    const downloadBtn2 = document.getElementById('downloadCvBtn2');
-    if (downloadBtn1) downloadBtn1.addEventListener('click', handleCvDownload);
-    if (downloadBtn2) downloadBtn2.addEventListener('click', handleCvDownload);
-    
-    const linkedinBtn = document.getElementById('linkedinPlaceholder');
-    if(linkedinBtn) {
-        linkedinBtn.addEventListener('click', (e) => { e.preventDefault(); alert("LinkedIn profile coming soon — connect via email."); });
+    // Download Transcript of Records logic
+    function downloadTranscript() {
+        const fileName = "Mark Golez - Transcript.pdf";
+        const fileUrl = `/${fileName}`;
+        const link = document.createElement('a');
+        link.href = fileUrl;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        const toast = document.getElementById('downloadToast');
+        toast.textContent = `Downloading "${fileName}" from server root...`;
+        toast.classList.add('show');
+        setTimeout(() => { toast.classList.remove('show'); }, 2000);
+        setTimeout(() => {
+            toast.textContent = "⚠️ Ensure 'Mark Golez - Transcript.pdf' exists in the website root folder.";
+            toast.classList.add('show');
+            setTimeout(() => { toast.classList.remove('show'); }, 3000);
+        }, 500);
     }
+    
+    function handleTranscriptDownload(e) {
+        e.preventDefault();
+        downloadTranscript();
+    }
+    
+    const downloadBtn1 = document.getElementById('downloadCvBtn');
+    const downloadBtnContact = document.getElementById('downloadCvBtnContact');
+    const transcriptBtn = document.getElementById('downloadTranscriptBtn');
+    
+    if (downloadBtn1) downloadBtn1.addEventListener('click', handleCvDownload);
+    if (downloadBtnContact) downloadBtnContact.addEventListener('click', handleCvDownload);
+    if (transcriptBtn) transcriptBtn.addEventListener('click', handleTranscriptDownload);
+    
+    // LinkedIn button has been completely removed from the DOM; no handler needed.
 </script>
 </body>
 </html>
