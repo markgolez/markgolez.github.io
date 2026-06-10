@@ -409,49 +409,6 @@
             margin-bottom: 12px;
         }
 
-        /* New hierarchical list styles for St. Joseph Convent section */
-        .exp-category {
-            margin-bottom: 16px;
-        }
-        
-        .exp-category-title {
-            font-weight: 600;
-            font-size: 14px;
-            color: #138813;
-            margin-bottom: 6px;
-            display: flex;
-            align-items: baseline;
-            gap: 6px;
-        }
-        
-        .exp-category-title::before {
-            content: "▹";
-            color: #138813;
-            font-size: 12px;
-        }
-        
-        .exp-sub-items {
-            list-style: none;
-            padding-left: 20px;
-            margin-bottom: 8px;
-        }
-        
-        .exp-sub-items li {
-            font-size: 13.5px;
-            margin-bottom: 5px;
-            display: flex;
-            align-items: baseline;
-            gap: 8px;
-            color: #4B5563;
-        }
-        
-        .exp-sub-items li::before {
-            content: "—";
-            color: #9CA3AF;
-            font-size: 12px;
-        }
-        
-        /* Standard bullet list for other experience items */
         .exp-list {
             list-style: none;
             margin-top: 12px;
@@ -633,9 +590,6 @@
             .profile-image {
                 max-width: 280px;
             }
-            .exp-sub-items {
-                padding-left: 12px;
-            }
         }
 
         footer {
@@ -727,53 +681,24 @@
         </div>
     </section>
 
-    <!-- Experience Section: St. Joseph Convent modified with hierarchical bullet structure -->
+    <!-- Experience Section: Modified to vertical stack instead of grid -->
     <section id="experience">
         <div class="container">
             <h2 class="section-title">Professional Experience</h2>
             <div class="experience-stack">
-                <!-- Mathematics and Computer Science Teacher - Hierarchical bullet structure -->
+                <!-- Mathematics and Computer Science Teacher - Detailed -->
                 <div class="card timeline-card">
                     <div class="exp-header">
                         <span class="exp-title">Mathematics and Computer Science Teacher</span>
                         <span class="exp-date">May 2017 – Present</span>
                     </div>
                     <div class="exp-sub">St. Joseph Convent School, Thailand</div>
-                    
-                    <div class="exp-category">
-                        <div class="exp-category-title">Teaching & Curriculum Delivery</div>
-                        <ul class="exp-sub-items">
-                            <li>Teaching Advanced level Mathematics specializing in Calculus, Trigonometry, Algebra, Matrices, Vectors, Logic, and Statistics using student-centered methodologies</li>
-                            <li>Designed differentiated lesson plans aligned with international curricula, improving student achievement and boosting confidence in math and computer science</li>
-                            <li>Enhanced engagement through latest technology integration and other multimedia resources</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="exp-category">
-                        <div class="exp-category-title">Student Development & Assessment</div>
-                        <ul class="exp-sub-items">
-                            <li>Designed and implemented diverse evaluation methods including project-based assessments to develop critical thinking skills and measure holistic growth</li>
-                            <li>Developed personalized feedback systems and adaptive learning tools to support individual student's progress and resilience</li>
-                            <li>Established peer mentoring programs that enhanced engagement and leadership skills, resulting in increased participation</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="exp-category">
-                        <div class="exp-category-title">Extracurricular & Community Leadership</div>
-                        <ul class="exp-sub-items">
-                            <li>Organize and host academic competitions and events, increasing participation and leadership opportunities</li>
-                            <li>Coach Math Clubs and STEM teams, guiding students to success in interschool competitions in Thailand</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="exp-category">
-                        <div class="exp-category-title">Professional Collaboration & Growth</div>
-                        <ul class="exp-sub-items">
-                            <li>Conducts workshop for faculty on 21st-century literacies, technology integration, and innovative pedagogies</li>
-                            <li>Presents at conferences and workshops on educational research and teaching best practices</li>
-                            <li>SAP ASEAN Data Analytics Instructor 2022</li>
-                        </ul>
-                    </div>
+                    <ul class="exp-list">
+                        <li><strong>Teaching & Curriculum Delivery:</strong> Teaching Advanced level Mathematics specializing in Calculus, Trigonometry, Algebra, Matrices, Vectors, Logic, and Statistics using student-centered methodologies; designed differentiated lesson plans aligned with international curricula; enhanced engagement through latest technology integration and multimedia resources.</li>
+                        <li><strong>Student Development & Assessment:</strong> Designed and implemented diverse evaluation methods including project-based assessments to develop critical thinking; developed personalized feedback systems and adaptive learning tools to support individual student's progress; established peer mentoring programs enhancing engagement and leadership skills.</li>
+                        <li><strong>Extracurricular & Community Leadership:</strong> Organize and host academic competitions and events; coach Math Clubs and STEM teams, guiding students to success in interschool competitions in Thailand.</li>
+                        <li><strong>Professional Collaboration & Growth:</strong> Conducts workshops for faculty on 21st-century literacies, technology integration, and innovative pedagogies; presents at conferences on educational research and teaching best practices; SAP ASEAN Data Analytics Instructor 2022.</li>
+                    </ul>
                 </div>
 
                 <!-- Mathematics and MAPEH Teacher - Detailed -->
@@ -924,7 +849,8 @@
 <script>
     lucide.createIcons();
 
-    // Smooth scroll for anchor links    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href');
             if (targetId === "#" || targetId === "") return;
