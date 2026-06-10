@@ -409,20 +409,49 @@
             margin-bottom: 12px;
         }
 
+        /* Styling for nested lists in experience section */
         .exp-list {
+            list-style: none;
+            margin-top: 8px;
+        }
+
+        .exp-list > li {
+            margin-bottom: 16px;
+        }
+
+        .exp-list > li > strong {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 6px;
+        }
+
+        .exp-list ul {
+            margin-top: 4px;
+            margin-left: 20px;
+            list-style: disc;
+        }
+
+        .exp-list ul li {
+            font-size: 14px;
+            margin-bottom: 6px;
+            color: #4B5563;
+        }
+
+        /* Keep the simpler style for other experience cards (non-St Joseph) if needed, but we'll unify for consistency */
+        .simple-exp-list {
             list-style: none;
             margin-top: 12px;
         }
-
-        .exp-list li {
+        .simple-exp-list li {
             font-size: 14px;
             margin-bottom: 8px;
             display: flex;
             align-items: baseline;
             gap: 8px;
         }
-
-        .exp-list li::before {
+        .simple-exp-list li::before {
             content: "—";
             color: #138813;
             flex-shrink: 0;
@@ -681,12 +710,12 @@
         </div>
     </section>
 
-    <!-- Experience Section: Modified to vertical stack (single column) as requested -->
+    <!-- Experience Section: Modified to vertical stack (single column) -->
     <section id="experience">
         <div class="container">
             <h2 class="section-title">Professional Experience</h2>
             <div class="experience-stack">
-                <!-- Mathematics and Computer Science Teacher - St. Joseph Convent (single column full width) -->
+                <!-- Mathematics and Computer Science Teacher - St. Joseph Convent (updated nested list format) -->
                 <div class="card timeline-card">
                     <div class="exp-header">
                         <span class="exp-title">Mathematics and Computer Science Teacher</span>
@@ -694,21 +723,49 @@
                     </div>
                     <div class="exp-sub">St. Joseph Convent School, Thailand</div>
                     <ul class="exp-list">
-                        <li><strong>Teaching & Curriculum Delivery:</strong> Teaching Advanced level Mathematics specializing in Calculus, Trigonometry, Algebra, Matrices, Vectors, Logic, and Statistics using student-centered methodologies; designed differentiated lesson plans aligned with international curricula; enhanced engagement through latest technology integration and multimedia resources.</li>
-                        <li><strong>Student Development & Assessment:</strong> Designed and implemented diverse evaluation methods including project-based assessments to develop critical thinking; developed personalized feedback systems and adaptive learning tools to support individual student's progress; established peer mentoring programs enhancing engagement and leadership skills.</li>
-                        <li><strong>Extracurricular & Community Leadership:</strong> Organize and host academic competitions and events; coach Math Clubs and STEM teams, guiding students to success in interschool competitions in Thailand.</li>
-                        <li><strong>Professional Collaboration & Growth:</strong> Conducts workshops for faculty on 21st-century literacies, technology integration, and innovative pedagogies; presents at conferences on educational research and teaching best practices; SAP ASEAN Data Analytics Instructor 2022.</li>
+                        <li>
+                            <strong>Teaching & Curriculum Delivery</strong>
+                            <ul>
+                                <li>Teaching Advanced level Mathematics specializing in Calculus, Trigonometry, Algebra, Matrices, Vectors, Logic, and Statistics using student-centered methodologies.</li>
+                                <li>Designed differentiated lesson plans aligned with international curricula.</li>
+                                <li>Enhanced student engagement through technology integration and multimedia resources.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Student Development & Assessment</strong>
+                            <ul>
+                                <li>Designed and implemented diverse evaluation methods, including project-based assessments, to develop critical thinking.</li>
+                                <li>Developed personalized feedback systems and adaptive learning tools to support individual student progress.</li>
+                                <li>Established peer mentoring programs that enhanced student engagement and leadership skills.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Extracurricular & Community Leadership</strong>
+                            <ul>
+                                <li>Organized and hosted academic competitions and educational events.</li>
+                                <li>Coached Math Clubs and STEM teams.</li>
+                                <li>Guided students to success in interschool competitions across Thailand.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Professional Collaboration & Growth</strong>
+                            <ul>
+                                <li>Conducted workshops for faculty on 21st-century literacies, technology integration, and innovative pedagogies.</li>
+                                <li>Presented at conferences on educational research and teaching best practices.</li>
+                                <li>Served as a SAP ASEAN Data Analytics Instructor (2022).</li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
 
-                <!-- Mathematics and MAPEH Teacher - Detailed -->
+                <!-- Mathematics and MAPEH Teacher - Naga College Foundation (keeping original structure but with simple-exp-list for consistency) -->
                 <div class="card timeline-card">
                     <div class="exp-header">
                         <span class="exp-title">Mathematics and MAPEH Teacher</span>
                         <span class="exp-date">May 2013 – March 2017</span>
                     </div>
                     <div class="exp-sub">Naga College Foundation, Philippines</div>
-                    <ul class="exp-list">
+                    <ul class="simple-exp-list">
                         <li>Planned and executed educational workshops, seminars, and inter-school competitions providing students opportunities to showcase academic skills.</li>
                         <li>Chaired multiple committees for school events, demonstrating strong leadership and organizational skills.</li>
                         <li>Coordinated SRA Mathematics programs, implementing innovative teaching methods that led to improved student performance.</li>
@@ -719,28 +776,28 @@
                     </ul>
                 </div>
 
-                <!-- Private Tutor - Detailed -->
+                <!-- Private Tutor - Self-Employed -->
                 <div class="card timeline-card">
                     <div class="exp-header">
                         <span class="exp-title">Private Tutor</span>
                         <span class="exp-date">2014 – Present</span>
                     </div>
                     <div class="exp-sub">Self-Employed · International School Students (Thailand/Philippines)</div>
-                    <ul class="exp-list">
+                    <ul class="simple-exp-list">
                         <li>Conducts tailored sessions for students from international schools, integrating activity-based learning to enhance understanding.</li>
                         <li>Designs and facilitates interactive educational instructions to significantly improve student engagement and academic outcomes.</li>
                         <li>Focuses on mathematics, test preparation, and concept reinforcement using adaptive teaching strategies.</li>
                     </ul>
                 </div>
 
-                <!-- Statistician Consultant - Detailed -->
+                <!-- Statistician Consultant - Freelance -->
                 <div class="card timeline-card">
                     <div class="exp-header">
                         <span class="exp-title">Statistician Consultant</span>
                         <span class="exp-date">2020 – Present</span>
                     </div>
                     <div class="exp-sub">Freelance · PhD & Master's Research Support</div>
-                    <ul class="exp-list">
+                    <ul class="simple-exp-list">
                         <li>Provides statistical consultations for PhD and Master's students, advising on experimental designs and advanced data modeling techniques.</li>
                         <li>Analyzes data using latest statistical software for dissertations and publications, ensuring methodological rigor and data integrity.</li>
                         <li>Supports researchers in quantitative analysis, interpretation, and presentation of complex data structures.</li>
