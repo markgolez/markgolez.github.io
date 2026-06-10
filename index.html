@@ -128,10 +128,18 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
         }
 
+        /* Original grid-2 kept for other sections, but overridden for experience if needed */
         .grid-2 {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 16px;
+        }
+        
+        /* Vertical stack container for experience section only */
+        .experience-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .hero {
@@ -372,7 +380,8 @@
         }
 
         .timeline-card {
-            margin-bottom: 24px;
+            margin-bottom: 0;
+            width: 100%;
         }
 
         .exp-header {
@@ -407,7 +416,7 @@
 
         .exp-list li {
             font-size: 14px;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             display: flex;
             align-items: baseline;
             gap: 8px;
@@ -416,6 +425,7 @@
         .exp-list li::before {
             content: "—";
             color: #138813;
+            flex-shrink: 0;
         }
 
         .skills-grid {
@@ -671,11 +681,11 @@
         </div>
     </section>
 
-    <!-- Experience Section: Fully updated with complete details from PDF -->
+    <!-- Experience Section: Modified to vertical stack instead of grid -->
     <section id="experience">
         <div class="container">
             <h2 class="section-title">Professional Experience</h2>
-            <div class="grid-2">
+            <div class="experience-stack">
                 <!-- Mathematics and Computer Science Teacher - Detailed -->
                 <div class="card timeline-card">
                     <div class="exp-header">
