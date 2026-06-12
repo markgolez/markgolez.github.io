@@ -60,6 +60,7 @@
             flex-wrap: wrap;
         }
 
+        /* Desktop navigation links - default visible */
         .nav-links {
             display: flex;
             gap: 28px;
@@ -77,6 +78,56 @@
 
         .nav-links a:hover {
             color: #138813;
+        }
+
+        /* Hamburger menu button - hidden on desktop */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 101;
+        }
+
+        .hamburger .hamburger-icon {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: #111827;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger .hamburger-icon::before,
+        .hamburger .hamburger-icon::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 2px;
+            background-color: #111827;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger .hamburger-icon::before {
+            transform: translateY(-8px);
+        }
+
+        .hamburger .hamburger-icon::after {
+            transform: translateY(8px);
+        }
+
+        /* Hamburger open (X) state */
+        .hamburger.open .hamburger-icon {
+            background-color: transparent;
+        }
+
+        .hamburger.open .hamburger-icon::before {
+            transform: rotate(45deg);
+        }
+
+        .hamburger.open .hamburger-icon::after {
+            transform: rotate(-45deg);
         }
 
         .logo {
@@ -567,6 +618,7 @@
             visibility: visible;
         }
 
+        /* === MODIFIED NAVBAR MEDIA QUERIES: HAMBURGER MENU FOR MOBILE === */
         @media (max-width: 768px) {
             .container {
                 padding: 0 20px;
@@ -581,13 +633,67 @@
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
+            /* Modified nav-container for mobile */
             .nav-container {
-                flex-direction: column;
-                gap: 12px;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0;
+                position: relative;
+                padding: 12px 20px;
             }
+            /* Hide default nav-links on mobile, show hamburger */
             .nav-links {
-                gap: 20px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                background-color: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(12px);
+                flex-direction: column;
+                align-items: center;
                 justify-content: center;
+                gap: 24px;
+                padding: 80px 24px 40px;
+                margin: 0;
+                width: 100%;
+                height: 100vh;
+                z-index: 99;
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in-out;
+                box-shadow: none;
+                list-style: none;
+                pointer-events: none;
+                overflow-y: auto;
+            }
+            .nav-links.active {
+                transform: translateX(0);
+                pointer-events: all;
+            }
+            .nav-links li {
+                margin: 0;
+                width: 100%;
+                text-align: center;
+            }
+            .nav-links a {
+                font-size: 18px;
+                padding: 12px 0;
+                display: inline-block;
+                font-weight: 500;
+                color: #111827;
+            }
+            .nav-links a:hover {
+                color: #138813;
+            }
+            /* Hamburger button visible on mobile */
+            .hamburger {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            /* Body scroll lock when menu is open */
+            body.menu-open {
+                overflow: hidden;
             }
             .hero-inner {
                 flex-direction: column;
@@ -657,7 +763,11 @@
 <nav class="navbar">
     <div class="nav-container">
         <div class="logo">Mark Golez</div>
-        <ul class="nav-links">
+        <!-- Hamburger Menu Button (visible only on mobile) -->
+        <button class="hamburger" id="hamburgerBtn" aria-label="Menu" aria-expanded="false">
+            <span class="hamburger-icon"></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
             <li><a href="#about">About</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#education">Education</a></li>
@@ -847,7 +957,6 @@
             <h2 class="section-title">Featured Projects</h2>
             <div class="grid-2">
                 <div class="card"><div class="project-title">📊 Student Behavior Management Platform</div><p>Comprehensive web-based school management platform streamlining behavior monitoring, administrative workflows, and scheduling operations.</p><ul class="feature-list"><li><strong>Behavior Management System</strong> – Centralized guidelines, digital tracking</li><li><strong>Automated Incident Reporting</strong> – Teacher workflows, analytics dashboard</li><li><strong>Teacher Leave & Substitute Management</strong> – Automated discovery</li><li><strong>Teacher & Student Scheduling</strong> – Workload management, class visibility</li></ul><div class="impact">✔ Reduced administrative workload, improved operational efficiency</div></div>
-                <!-- The second project card (Data Analytics) has been removed as requested. Only one project remains. -->
             </div>
         </div>
     </section>
@@ -862,7 +971,7 @@
         </div>
     </section>
 
-    <!-- Contact Section with Dark Background & Modified Buttons: Email Me replaced with Download CV, Download CV replaced with Transcript, LinkedIn removed -->
+    <!-- Contact Section with Dark Background & Modified Buttons -->
     <section id="contact">
         <div class="container">
             <h2 class="section-title">Let's Build Better Learning Systems</h2>
@@ -873,11 +982,8 @@
                     <div class="contact-detail"><i data-lucide="phone" size="16"></i> +66 82 347 5294</div>
                     <div class="contact-detail"><i data-lucide="map-pin" size="16"></i> Thailand</div>
                     <div style="display: flex; gap: 16px; margin-top: 24px; flex-wrap: wrap;">
-                        <!-- REPLACED: Email Me button is now Download CV -->
                         <a href="#" id="downloadCvBtnContact" class="btn btn-primary">📄 Download CV</a>
-                        <!-- REPLACED: Download CV button is now Download Transcript of Records -->
                         <a href="#" id="downloadTranscriptBtn" class="btn btn-outline">📜 Download Transcript of Records</a>
-                        <!-- LinkedIn button REMOVED entirely -->
                     </div>
                 </div>
                 <!-- Contact Form integrated with Google Apps Script -->
@@ -914,6 +1020,50 @@
 <script>
     lucide.createIcons();
 
+    // Hamburger Menu functionality (only affects nav, keeps all existing code intact)
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navLinks = document.getElementById('navLinks');
+    const bodyEl = document.body;
+
+    function toggleMenu() {
+        const isOpen = navLinks.classList.contains('active');
+        if (isOpen) {
+            navLinks.classList.remove('active');
+            hamburgerBtn.classList.remove('open');
+            hamburgerBtn.setAttribute('aria-expanded', 'false');
+            bodyEl.classList.remove('menu-open');
+        } else {
+            navLinks.classList.add('active');
+            hamburgerBtn.classList.add('open');
+            hamburgerBtn.setAttribute('aria-expanded', 'true');
+            bodyEl.classList.add('menu-open');
+        }
+    }
+
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', toggleMenu);
+    }
+
+    // Close menu when a nav link is clicked (smooth scroll + close)
+    const allNavLinks = document.querySelectorAll('.nav-links a');
+    allNavLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            if (navLinks.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+    });
+
+    // Ensure menu closes on window resize back to desktop mode
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            hamburgerBtn.classList.remove('open');
+            bodyEl.classList.remove('menu-open');
+            if (hamburgerBtn) hamburgerBtn.setAttribute('aria-expanded', 'false');
+        }
+    });
+
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -929,13 +1079,7 @@
 
     // GSAP Advanced Animations
     gsap.registerPlugin(ScrollTrigger);
-    
-    // Set initial states for elements we want to animate
-    gsap.set('.hero-content, .profile-image-wrapper, .section-title, .card, .skill-category, .mv-card, .timeline-card, .contact-info, .contact-form-card', { 
-        opacity: 0, 
-        y: 30,
-        visibility: 'visible'
-    });
+    gsap.set('.hero-content, .profile-image-wrapper, .section-title, .card, .skill-category, .mv-card, .timeline-card, .contact-info, .contact-form-card', { opacity: 0, y: 30, visibility: 'visible' });
     gsap.set('footer', { opacity: 1, y: 0, visibility: 'visible' });
     
     gsap.to('.hero-content', { scrollTrigger: { trigger: '.hero', start: 'top 85%', toggleActions: 'play none none reverse' }, opacity: 1, y: 0, duration: 0.8, delay: 0.1, ease: 'power2.out' });
@@ -1026,7 +1170,6 @@
         }, 500);
     }
     
-    // Download Transcript of Records logic
     function downloadTranscript() {
         const fileName = "Mark Golez - Transcript.pdf";
         const fileUrl = `/${fileName}`;
@@ -1059,8 +1202,6 @@
     if (downloadBtn1) downloadBtn1.addEventListener('click', handleCvDownload);
     if (downloadBtnContact) downloadBtnContact.addEventListener('click', handleCvDownload);
     if (transcriptBtn) transcriptBtn.addEventListener('click', handleTranscriptDownload);
-    
-    // LinkedIn button has been completely removed from the DOM; no handler needed.
 </script>
 </body>
 </html>
